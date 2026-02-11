@@ -20,7 +20,9 @@
                 <form method="POST">
                     {% csrf_token %}
                     {{ form|foundation }}
-                    {% include "admin/elements/forms/foundation_submit_button.html" with classes="success" button_text="Save Galley Content" %}
+                    <div class="large-12 columns">
+                        <button class="success button">Save Galley Content</button>
+                    </div>
                 </form>
             </div>
         </div>

@@ -17,3 +17,9 @@ INSTALLED_APPS = [
     "file_editor",
 ]
 ```
+
+Finally, include the app's URLs in `src/core/include_urls.py`:
+
+```python
+path("file-editor/", include("file_editor.urls")),
+```

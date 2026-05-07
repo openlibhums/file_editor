@@ -20,6 +20,9 @@ setup(
         "file_editor.migrations": "migrations",
     },
     include_package_data=True,
+    package_data={
+        "file_editor": ["templates/file_editor/*.html"],
+    },
     install_requires=["Django"],
     classifiers=[
         "Environment :: Web Environment",

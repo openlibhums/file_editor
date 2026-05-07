@@ -20,9 +20,9 @@
                 <form method="POST">
                     {% csrf_token %}
                     {{ form|foundation }}
-                    <button class="success button">
-                        Save Galley Content
-                    </button>
+                    <div class="row expanded">
+                      <button class="success button">Save</button>
+                    </div>
                 </form>
             </div>
         </div>

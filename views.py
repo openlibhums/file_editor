@@ -13,17 +13,13 @@ def galley_list(request):
         article__journal=request.journal,
         file__mime_type__in=files.MIMETYPES_WITH_FIGURES,
     ).select_related(
-        'article',
+        "article",
     )
-    template = 'file_editor/galley_list.html'
+    template = "file_editor/galley_list.html"
     context = {
-        'galleys': galleys,
+        "galleys": galleys,
     }
-    return render(
-        request,
-        template,
-        context
-    )
+    return render(request, template, context)
 
 
 @has_journal
@@ -42,12 +38,12 @@ def edit_galley_file(request, article_id, galley_id):
     )
     warning = None
     if not galley.file:
-        warning = 'Galley has no corresponding file object'
+        warning = "Galley has no corresponding file object"
     elif galley.file.mime_type not in files.MIMETYPES_WITH_FIGURES:
-        warning = 'This file type is not editable.'
+        warning = "This file type is not editable."
     if warning:
         messages.add_message(request, messages.WARNING, warning)
-        return redirect(reverse('editor_galley_list'))
+        return redirect(reverse("editor_galley_list"))
 
     form = forms.GalleyEditForm(
         galley=galley,
@@ -62,25 +58,21 @@ def edit_galley_file(request, article_id, galley_id):
             messages.add_message(
                 request,
                 messages.SUCCESS,
-                'Galley content saved.',
+                "Galley content saved.",
             )
             return redirect(
                 reverse(
-                    'editors_edit_galley_file',
+                    "editors_edit_galley_file",
                     kwargs={
-                        'article_id': galley.article.pk,
-                        'galley_id': galley.pk,
-                    }
+                        "article_id": galley.article.pk,
+                        "galley_id": galley.pk,
+                    },
                 )
             )
 
-    template = 'file_editor/edit_galley_file.html'
+    template = "file_editor/edit_galley_file.html"
     context = {
-        'galley': galley,
-        'form': form,
+        "galley": galley,
+        "form": form,
     }
-    return render(
-        request,
-        template,
-        context
-    )
+    return render(request, template, context)
